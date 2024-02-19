@@ -11,10 +11,14 @@ ColorPrinter is a custom Python library designed to mimic the behavior of the `p
 
 ## Usage
 
-1. Import the `ColorPrinter` class into your Python script.
+1. Install the package from PyPi
+   ```
+   pip install AdvancedPrinter
+   ```
+2. Import the `ColorPrinter` class into your Python script.
    
     ```python
-    from advancedrinter import AdvancedPrinter as AP
+    from advancedprinter import AdvancedPrinter as AP
     ```
 
 2. Use the `ColorPrint.print()` method to print colored text.
@@ -45,8 +49,6 @@ ColorPrinter is a custom Python library designed to mimic the behavior of the `p
    AP.print(f"{age}", foreground=age_color, style=style, end="")
    AP.print(" years old!", foreground='magenta', style=style)
     ```
-   ## Try it Online
-   
 
 ## License
 
