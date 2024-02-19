@@ -14,23 +14,23 @@ ColorPrinter is a custom Python library designed to mimic the behavior of the `p
 1. Import the `ColorPrinter` class into your Python script.
    
     ```python
-    from colorprinter import ColorPrinter
+    from advancedrinter import AdvancedPrinter as AP
     ```
 
 2. Use the `ColorPrint.print()` method to print colored text.
 
     ```python
     # Example usage
-   ColorPrinter.print("Hello, colored world!", foreground="green")
-   ColorPrinter.print("Hello, bold red underlined italic text!", foreground="red", style="bold-italic-underline")
-   ColorPrinter.print("Hello, black text on blue background!", foreground="black", background="blue")
-   ColorPrinter.print("underline", style="underline")
-   ColorPrinter.print("bold-italic", style="bold-italic")
-   ColorPrinter.print("orange bold-italic", style="bold-italic", foreground='orange')
-   ColorPrinter.print("Hello, black text on white background!", foreground="black", background="white")
+   AP.print("Hello, colored world!", foreground="green")
+   AP.print("Hello, bold red underlined italic text!", foreground="red", style="bold-italic-underline")
+   AP.print("Hello, black text on blue background!", foreground="black", background="blue")
+   AP.print("underline", style="underline")
+   AP.print("bold-italic", style="bold-italic")
+   AP.print("orange bold-italic", style="bold-italic", foreground='orange')
+   AP.print("Hello, black text on white background!", foreground="black", background="white")
    
    # Additional arguments example
-   ColorPrinter.print("This is an example with additional arguments.", style="bold", end="***")
+   AP.print("This is an example with additional arguments.", style="bold", end="***")
    
    # Example usage with different colors for different parts of the string
    name_color = 'GREEN'
@@ -39,11 +39,11 @@ ColorPrinter is a custom Python library designed to mimic the behavior of the `p
    name = "Kaloian"
    age = 30
    
-   ColorPrinter.print(f"\nHello, my name is ", foreground=name_color, style=style, end="")
-   ColorPrinter.print(f"{name}", foreground='blue', style=style, end="")
-   ColorPrinter.print(f" and I am ", foreground='white', style=style, end="")
-   ColorPrinter.print(f"{age}", foreground=age_color, style=style, end="")
-   ColorPrinter.print(" years old!", foreground='magenta', style=style)
+   AP.print(f"\nHello, my name is ", foreground=name_color, style=style, end="")
+   AP.print(f"{name}", foreground='blue', style=style, end="")
+   AP.print(f" and I am ", foreground='white', style=style, end="")
+   AP.print(f"{age}", foreground=age_color, style=style, end="")
+   AP.print(" years old!", foreground='magenta', style=style)
     ```
    ## Try it Online
    

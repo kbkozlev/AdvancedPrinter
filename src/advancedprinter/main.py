@@ -1,4 +1,4 @@
-class ColorPrinter:
+class AdvancedPrinter:
     """
     Custom class to mimic the behavior of the print function with added color and style options.
 
@@ -68,17 +68,17 @@ class ColorPrinter:
         :param file: A file-like object (stream); defaults to the current sys.stdout.
         :param kwargs: Additional keyword arguments supported by the built-in print function.
         """
-        color_code = getattr(ColorPrinter.C, foreground.upper(), '') if foreground else ''
-        background_code = getattr(ColorPrinter.C, f"BG_{background.upper()}", '') if background else ''
+        color_code = getattr(AdvancedPrinter.C, foreground.upper(), '') if foreground else ''
+        background_code = getattr(AdvancedPrinter.C, f"BG_{background.upper()}", '') if background else ''
 
         # Process style
         style_code = ''
         if style:
             styles = style.split('-')
             for style in styles:
-                style_code += getattr(ColorPrinter.C, style.upper(), '')
+                style_code += getattr(AdvancedPrinter.C, style.upper(), '')
 
         text = ' '.join(str(arg) for arg in args)
-        colored_text = f'{background_code}{style_code}{color_code}{text}{ColorPrinter.C.RESET}'
+        colored_text = f'{background_code}{style_code}{color_code}{text}{AdvancedPrinter.C.RESET}'
 
         print(colored_text, end=end, flush=flush, file=file, **kwargs)
