@@ -36,7 +36,7 @@ ColorPrinter is a custom Python library designed to mimic the behavior of the `p
    name_color = 'GREEN'
    age_color = 'RED'
    style = 'BOLD'
-   name = "Alice"
+   name = "Kaloian"
    age = 30
    
    ColorPrinter.print(f"\nHello, my name is ", foreground=name_color, style=style, end="")
