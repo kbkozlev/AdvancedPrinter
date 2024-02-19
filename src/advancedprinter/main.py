@@ -55,6 +55,30 @@ class AdvancedPrinter:
         UNDERLINE = '\x1B[4m'
 
     @staticmethod
+    def _prepare_text(*args, foreground=None, background=None, style=None):
+        """
+        Helper method to prepare the colored and styled text.
+
+        :param args: The text to print.
+        :param foreground: The foreground color.
+        :param background: The background color.
+        :param style: The style.
+        :return: The colored and styled text.
+        """
+        color_code = getattr(AdvancedPrinter.C, foreground.upper(), '') if foreground else ''
+        background_code = getattr(AdvancedPrinter.C, f"BG_{background.upper()}", '') if background else ''
+
+        # Process style
+        style_code = ''
+        if style:
+            styles = style.split('-')
+            for style in styles:
+                style_code += getattr(AdvancedPrinter.C, style.upper(), '')
+
+        text = ' '.join(str(arg) for arg in args)
+        return f'{background_code}{style_code}{color_code}{text}{AdvancedPrinter.C.RESET}'
+
+    @staticmethod
     def print(*args, foreground=None, background=None, style=None, end='\n', flush=False, file=None, **kwargs):
         """
         Custom print function with added color and style options.
@@ -68,17 +92,20 @@ class AdvancedPrinter:
         :param file: A file-like object (stream); defaults to the current sys.stdout.
         :param kwargs: Additional keyword arguments supported by the built-in print function.
         """
-        color_code = getattr(AdvancedPrinter.C, foreground.upper(), '') if foreground else ''
-        background_code = getattr(AdvancedPrinter.C, f"BG_{background.upper()}", '') if background else ''
-
-        # Process style
-        style_code = ''
-        if style:
-            styles = style.split('-')
-            for style in styles:
-                style_code += getattr(AdvancedPrinter.C, style.upper(), '')
-
-        text = ' '.join(str(arg) for arg in args)
-        colored_text = f'{background_code}{style_code}{color_code}{text}{AdvancedPrinter.C.RESET}'
-
+        colored_text = AdvancedPrinter._prepare_text(*args, foreground=foreground, background=background, style=style)
         print(colored_text, end=end, flush=flush, file=file, **kwargs)
+
+    @staticmethod
+    def line(*args, foreground=None, background=None, style=None, end='') -> str:
+        """
+        Custom function with added color and style options used for inline printing
+
+        :param args: The text to print.
+        :param foreground: The foreground color.
+        :param background: The background color.
+        :param style: The style.
+        :param end: The string appended after the last value, default is a newline.
+        """
+        colored_text = AdvancedPrinter._prepare_text(*args, foreground=foreground, background=background, style=style)
+
+        return f"{colored_text}{end}"
