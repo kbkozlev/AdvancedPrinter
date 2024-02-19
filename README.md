@@ -1,6 +1,6 @@
-# ColorPrinter
+# AdvancedPrinter
 
-ColorPrinter is a custom Python library designed to mimic the behavior of the `print` function with added color and style options using ANSI escape codes. This allows you to print text with various colors and styles to the terminal.
+AdvancedPrinter is a custom Python library designed to mimic the behavior of the `print` function with added color and style options using ANSI escape codes. This allows you to print text with various colors and styles to the terminal.
 
 ## Features
 
