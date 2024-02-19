@@ -4,10 +4,10 @@ ColorPrinter is a custom Python library designed to mimic the behavior of the `p
 
 ## Features
 
-- Print text in different colors: BLACK, RED, GREEN, YELLOW, BLUE, MAGENTA, CYAN, WHITE, and ORANGE.
-- Apply styles to text: BOLD, ITALIC, and UNDERLINE.
-- Customize background colors: BG_BLACK, BG_RED, BG_GREEN, BG_YELLOW, BG_BLUE, BG_MAGENTA, BG_CYAN, BG_WHITE, and BG_ORANGE.
-- Combine multiple styles: BOLD-ITALIC, BOLD-UNDERLINE, ITALIC-UNDERLINE, and BOLD-ITALIC-UNDERLINE.
+- Print text in different colors: black, red, green, yellow, blue, magenta, cyan, white, and orange.
+- Apply styles to text: bold, italic, and underline.
+- Customize background colors: bg_black, bg_red, bg_green, bg_yellow, bg_blue, bg_magenta, bg_cyan, bg_white, and bg_orange.
+- Combine multiple styles: bold-italic, bold-underline, italic-underline, and bold-italic-underline.
 
 ## Usage
 
@@ -15,13 +15,13 @@ ColorPrinter is a custom Python library designed to mimic the behavior of the `p
    ```
    pip install AdvancedPrinter
    ```
-2. Import the `ColorPrinter` class into your Python script.
+2. Import the `AdvancedPrinter` class into your Python script.
    
     ```python
     from advancedprinter import AdvancedPrinter as AP
     ```
 
-2. Use the `ColorPrint.print()` method to print colored text.
+2. Use the `AdvancedPrint.print()` method to print colored text.
 
     ```python
     # Example usage
@@ -49,6 +49,8 @@ ColorPrinter is a custom Python library designed to mimic the behavior of the `p
    AP.print(f"{age}", foreground=age_color, style=style, end="")
    AP.print(" years old!", foreground='magenta', style=style)
     ```
+   ![Example](https://i.imgur.com/fiiMm62.png)
+
 
 ## License
 
