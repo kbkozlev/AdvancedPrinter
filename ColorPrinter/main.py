@@ -35,7 +35,7 @@ class ColorPrinter:
         BLUE = '\033[34m'
         MAGENTA = '\033[35m'
         CYAN = '\033[36m'
-        WHITE = '\033[37m'
+        WHITE = '\033[97m'
         ORANGE = '\033[38;5;208m'
 
         # Background Colors
@@ -46,7 +46,7 @@ class ColorPrinter:
         BG_BLUE = '\033[48;5;4m'
         BG_MAGENTA = '\033[48;5;5m'
         BG_CYAN = '\033[48;5;6m'
-        BG_WHITE = '\033[48;5;7m'
+        BG_WHITE = '\033[107m'
         BG_ORANGE = '\033[48;5;208m'
 
         # Styles
