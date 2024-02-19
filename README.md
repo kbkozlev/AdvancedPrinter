@@ -17,30 +17,30 @@ AdvancedPrinter is a custom Python library designed to mimic the behavior of the
 2. Import the `AdvancedPrinter` class into your Python script.
    
    ```python
-    from advancedprinter import AdvancedPrinter as AP
+    from advancedprinter import AdvancedPrinter as ap
    ```
 
-3. Use the `AP.print()` method to print colored text.
+3. Use the `ap.print()` method to print colored text.
 
    ```python
    # Example usage
-   AP.print("Green text", foreground="green")
-   AP.print("Underlined text", style="underline")
-   AP.print("Bold italic text", style="bold-italic")
-   AP.print("Orange italic underlined", style="italic-underline", foreground='orange')
-   AP.print("White text on blue background!", foreground="white", background="blue")
-   AP.print("Bold red underlined italic text!", foreground="red", style="bold-italic-underline")
+   ap.print("Green text", foreground="green")
+   ap.print("Underlined text", style="underline")
+   ap.print("Bold italic text", style="bold-italic")
+   ap.print("Orange italic underlined", style="italic-underline", foreground='orange')
+   ap.print("White text on blue background!", foreground="white", background="blue")
+   ap.print("Bold red underlined italic text!", foreground="red", style="bold-italic-underline")
    
    # Additional arguments example
-   AP.print("This is a bold example with additional arguments.", style="bold", end="***")
+   ap.print("This is a bold example with additional arguments.", style="bold", end="***")
    ```
    ![Example1](https://i.imgur.com/sLSRK2N.png)
 
-4. Use `AP.line()` method to print multiple colors in line using nested `f-strings`
+4. Use `ap.line()` method to print multiple colors in line using nested `f-strings`
 
    ```python
    name = "Kaloian"
-   print(f"""{AP.line("Hello, my name is", foreground='green', style='bold')} {AP.line(f"{name}", foreground='blue')} {AP.line("and I'm", foreground='white')} {AP.line("28", foreground='red')} {AP.line('years old!', foreground='magenta')}""", end='***')
+   print(f"""{ap.line("Hello, my name is", foreground='green', style='bold')} {ap.line(f"{name}", foreground='blue')} {ap.line("and I'm", foreground='white')} {ap.line("28", foreground='red')} {ap.line('years old!', foreground='magenta')}""", end='***')
    ```
    ![Example2](https://i.imgur.com/E7lAGM6.png)
 
