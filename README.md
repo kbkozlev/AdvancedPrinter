@@ -36,6 +36,7 @@ AdvancedPrinter is a custom Python library designed to mimic the behavior of the
    ```
    ![Example1](https://i.imgur.com/sLSRK2N.png)
 
+
 4. Use `AP.line()` method to print multiple colors in line using nested `f-strings`
 
    ```python
