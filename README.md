@@ -44,6 +44,20 @@ AdvancedPrinter is a custom Python library designed to mimic the behavior of the
    ```
    ![Example2](https://i.imgur.com/E7lAGM6.png)
 
+## Optionally
+
+1. Import `print` and `line` directly to override the inbuilt methods
+   
+   ```python
+   from advancedprinter import print, line
+   
+   print("Green text", c="green")
+   
+   name = "Kaloian"
+   print(f"""{line("Hello, my name is", c='green', s='b')} {line(f"{name}", c='blue')} {line("and I'm", c='white')} {line("28", c='red')} {line('years old!', c='magenta')}""", end='***')
+   ```
+   ![Example3](https://i.imgur.com/ONPWHJj.png)
+
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.

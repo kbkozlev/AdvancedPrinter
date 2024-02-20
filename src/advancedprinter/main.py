@@ -60,7 +60,7 @@ class AdvancedPrinter:
         Helper method to prepare the colored and styled text.
 
         :param args: The text to print.
-        :param c: The text color.
+        :param foreground: The text color.
         :param background: The background color.
         :param style: The style.
         :return: The colored and styled text.
@@ -81,11 +81,10 @@ class AdvancedPrinter:
     @staticmethod
     def print(*args, c=None, b=None, s=None, end='\n', flush=False, file=None, **kwargs):
         """
-        Custom print function with added color and s options.
-
+        Print function wrapper with added color and style options.
 
         :param args: The text to print.
-        :param c: The text color.
+        :param c: The text color
         :param b: The background color.
         :param s: The style.
         :param end: The string appended after the last value, default is a newline.
@@ -99,7 +98,7 @@ class AdvancedPrinter:
     @staticmethod
     def line(*args, c=None, b=None, s=None, end='') -> str:
         """
-        Custom function with added color and s options used for inline printing
+        Custom function with added color and style options used for inline printing
 
         :param args: The text to return.
         :param c: The text color.
