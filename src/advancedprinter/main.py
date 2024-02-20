@@ -1,6 +1,6 @@
 class AdvancedPrinter:
     """
-    Custom class to mimic the behavior of the print function with added color and style options.
+    Custom class to mimic the behavior of the print function with added color and s options.
 
     Available colors:
     - BLACK
@@ -50,9 +50,9 @@ class AdvancedPrinter:
         BG_ORANGE = '\033[48;5;208m'
 
         # Styles
-        BOLD = '\033[1m'
-        ITALIC = '\x1B[3m'
-        UNDERLINE = '\x1B[4m'
+        B = '\033[1m'
+        IT = '\x1B[3m'
+        U = '\x1B[4m'
 
     @staticmethod
     def _prepare_text(*args, foreground=None, background=None, style=None):
@@ -60,7 +60,7 @@ class AdvancedPrinter:
         Helper method to prepare the colored and styled text.
 
         :param args: The text to print.
-        :param foreground: The foreground color.
+        :param c: The text color.
         :param background: The background color.
         :param style: The style.
         :return: The colored and styled text.
@@ -68,7 +68,7 @@ class AdvancedPrinter:
         color_code = getattr(AdvancedPrinter.C, foreground.upper(), '') if foreground else ''
         background_code = getattr(AdvancedPrinter.C, f"BG_{background.upper()}", '') if background else ''
 
-        # Process style
+        # Process s
         style_code = ''
         if style:
             styles = style.split('-')
@@ -79,33 +79,33 @@ class AdvancedPrinter:
         return f'{background_code}{style_code}{color_code}{text}{AdvancedPrinter.C.RESET}'
 
     @staticmethod
-    def print(*args, foreground=None, background=None, style=None, end='\n', flush=False, file=None, **kwargs):
+    def print(*args, c=None, b=None, s=None, end='\n', flush=False, file=None, **kwargs):
         """
-        Custom print function with added color and style options.
+        Custom print function with added color and s options.
+
 
         :param args: The text to print.
-        :param foreground: The foreground color.
-        :param background: The background color.
-        :param style: The style.
+        :param c: The text color.
+        :param b: The background color.
+        :param s: The style.
         :param end: The string appended after the last value, default is a newline.
-        :param flush: Whether to forcibly flush the stream.
+        :param flush: Whether to forcibly flush the stream, default is False.
         :param file: A file-like object (stream); defaults to the current sys.stdout.
         :param kwargs: Additional keyword arguments supported by the built-in print function.
         """
-        colored_text = AdvancedPrinter._prepare_text(*args, foreground=foreground, background=background, style=style)
+        colored_text = AdvancedPrinter._prepare_text(*args, foreground=c, background=b, style=s)
         print(colored_text, end=end, flush=flush, file=file, **kwargs)
 
     @staticmethod
-    def line(*args, foreground=None, background=None, style=None, end='') -> str:
+    def line(*args, c=None, b=None, s=None, end='') -> str:
         """
-        Custom function with added color and style options used for inline printing
+        Custom function with added color and s options used for inline printing
 
-        :param args: The text to print.
-        :param foreground: The foreground color.
-        :param background: The background color.
-        :param style: The style.
-        :param end: The string appended after the last value, default is a newline.
+        :param args: The text to return.
+        :param c: The text color.
+        :param b: The background color.
+        :param s: The style.
+        :param end: The string appended after the last value, default is ''.
         """
-        colored_text = AdvancedPrinter._prepare_text(*args, foreground=foreground, background=background, style=style)
-
+        colored_text = AdvancedPrinter._prepare_text(*args, foreground=c, background=b, style=s)
         return f"{colored_text}{end}"

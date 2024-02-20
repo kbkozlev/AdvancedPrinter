@@ -5,8 +5,8 @@ AdvancedPrinter is a custom Python library designed to mimic the behavior of the
 ## Features
 
 - Print text in different colors: `black`, `red`, `green`, `yellow`, `blue`, `magenta`, `cyan`, `white`, and `orange`.
-- Apply styles to text: `bold`, `italic`, and `underline`.
-- Combine styles: `bold-italic`, `bold-underline`, `italic-underline`, and `bold-italic-underline`.
+- Apply styles to text: `bold` = `b`, `italic` = `it`, and `underline` = `u`.
+- Combine styles: `b-it`, `b-u`, `it-u`, and `b-it-u`.
 
 ## Usage
 
@@ -24,15 +24,15 @@ AdvancedPrinter is a custom Python library designed to mimic the behavior of the
 
    ```python
    # Example usage
-   ap.print("Green text", foreground="green")
-   ap.print("Underlined text", style="underline")
-   ap.print("Bold italic text", style="bold-italic")
-   ap.print("Orange italic underlined", style="italic-underline", foreground='orange')
-   ap.print("White text on blue background!", foreground="white", background="blue")
-   ap.print("Bold red underlined italic text!", foreground="red", style="bold-italic-underline")
+   ap.print("Green text", c="green")
+   ap.print("Underlined text", s="u")
+   ap.print("Bold italic text", s="b-it")
+   ap.print("Orange italic underlined", s="it-u", c='orange')
+   ap.print("White text on blue b!", c="white", b="blue")
+   ap.print("Bold red underlined italic text!", c="red", s="b-it-u")
    
    # Additional arguments example
-   ap.print("This is a bold example with additional arguments.", style="bold", end="***")
+   ap.print("This is a bold example with additional arguments.", s="b", end="***")
    ```
    ![Example1](https://i.imgur.com/sLSRK2N.png)
 
@@ -40,7 +40,7 @@ AdvancedPrinter is a custom Python library designed to mimic the behavior of the
 
    ```python
    name = "Kaloian"
-   print(f"""{ap.line("Hello, my name is", foreground='green', style='bold')} {ap.line(f"{name}", foreground='blue')} {ap.line("and I'm", foreground='white')} {ap.line("28", foreground='red')} {ap.line('years old!', foreground='magenta')}""", end='***')
+   print(f"""{ap.line("Hello, my name is", c='green', s='b')} {ap.line(f"{name}", c='blue')} {ap.line("and I'm", c='white')} {ap.line("28", c='red')} {ap.line('years old!', c='magenta')}""", end='***')
    ```
    ![Example2](https://i.imgur.com/E7lAGM6.png)
 
