@@ -234,20 +234,3 @@ class AdvancedPrinter:
         for style in dir(AdvancedPrinter.C):
             if style.isupper() and style in styles:
                 AdvancedPrinter.print(f"- {AdvancedPrinter.line(f"{style}", s=style)}")
-
-
-# AdvancedPrinter.frame("""This is a test of color and style for multiline printing.
-# I'm just going to keep going to test how long I can make this and see if everything works.
-# Right now I'm just typing random shit,
-# here it is on the next line""", f_s='double', c='white', b='blue', s='b')
-
-# AdvancedPrinter.frame("""This is my first line
-# This is my second line
-# This is my third line""", c='green3', b='cyan', s='b-inv', f_c='white', f_b='blue', f_s='double')
-#
-# AdvancedPrinter.help()
-
-AdvancedPrinter.frame("""This is a frame with different
-                      text and frame color and
-                      multiple lines""",
-                      f_s='double', f_c='black', f_b='olive', c='white', b='cyan', s='b-u-it')
