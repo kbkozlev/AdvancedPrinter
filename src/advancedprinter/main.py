@@ -223,14 +223,17 @@ class AdvancedPrinter:
         print("Text Colors:")
         for color in dir(AdvancedPrinter.C):
             if color.isupper() and not color.startswith('BG_') and not color == 'RESET' and color not in styles:
-                AdvancedPrinter.print(f"- {color}", c=color)
+                AdvancedPrinter.print("- {}".format(color), c=color)
 
         print("\nBackground Colors:")
         for color in dir(AdvancedPrinter.C):
             if color.startswith('BG_'):
-                AdvancedPrinter.print(f"{AdvancedPrinter.line('          ', b=color[3:])} - {color[3:]} ")
+                bg_color = color[3:]
+                line_style = AdvancedPrinter.line('          ', b=bg_color)
+                AdvancedPrinter.print("{} - {}".format(line_style, bg_color))
 
         print("\nAvailable styles:")
         for style in dir(AdvancedPrinter.C):
             if style.isupper() and style in styles:
-                AdvancedPrinter.print(f"- {AdvancedPrinter.line(f"{style}", s=style)}")
+                line_style = AdvancedPrinter.line("{}".format(style), s=style)
+                AdvancedPrinter.print("- {}".format(line_style))
