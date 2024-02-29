@@ -55,8 +55,9 @@ class AdvancedPrinter:
         BLUE3 = '\033[38;2;0;0;128m'
 
         MAGENTA = '\033[35m'
-        MAGENTA1 = '\033[95m'
-        MAGENTA2 = '\033[38;2;255;0;255m'
+        MAGENTA1 = '\033[38;2;255;0;255m'
+
+        PINK = '\033[95m'
 
         PURPLE = '\033[38;2;128;0;128m'
 
@@ -89,14 +90,15 @@ class AdvancedPrinter:
         BG_BLUE1 = '\033[104m'
 
         BG_MAGENTA = '\033[45m'
-        BG_MAGENTA1 = '\033[105m'
+
+        BG_PINK = '\033[105m'
 
         BG_CYAN = '\033[46m'
         BG_CYAN1 = '\033[106m'
 
         BG_ORANGE = '\033[48;5;208m'
         BG_ORANGE1 = '\033[48;5;202m'
-        BG_ORANGE2 = '\033[48;5;166m'
+        BG_BROWN = '\033[48;5;166m'
 
         # Styles
         B = '\033[1m'
