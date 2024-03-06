@@ -8,6 +8,7 @@ AdvancedPrinter is a custom Python library designed to mimic the behavior of the
 - Apply styles to text: `bold` = `b`, `italic` = `it`, `underline` = `u`, `inverted` = `inv`, `strike-through` = `str`.
 - Combine styles: `b-it`, `b-u`, `it-u`, `b-it-u` etc.
 - Use `frame` method to frame text with different designs.
+- Use `input` method with colors and styles 
 
 ## Usage
 
@@ -95,7 +96,16 @@ AdvancedPrinter is a custom Python library designed to mimic the behavior of the
             multiple lines""", 
             f_s='double', f_c='black', f_b='olive', c='white', b='cyan', s='b-u-it')
   ```
-  ![Multicolor](https://i.imgur.com/eBtGdDc.png) 
+  ![Multicolor](https://i.imgur.com/eBtGdDc.png)
+
+3. Use the `input` method:
+   ```python
+   from advancedprinter import input
+   
+   something = input('Please enter something: ', c='red', s='b-u')
+   print(something)
+   ```
+   ![Input](https://i.imgur.com/67mfnOI.png)
 
 ## License
 

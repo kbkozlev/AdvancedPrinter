@@ -163,6 +163,21 @@ class AdvancedPrinter:
         return f"{colored_text}{end}"
 
     @staticmethod
+    def input(*args, c=None, b=None, s=None):
+        """
+        Input function wrapper with added color and style options
+
+        :param args: The text to print.
+        :param c: The text color
+        :param b: The background color.
+        :param s: The style.
+        :return: Return the inbuilt 'input' function but with colored formatting
+        """
+        text = args[0]
+        formatted_text = AdvancedPrinter._prepare_text(text.strip(), foreground=c, background=b, style=s)
+        return input(formatted_text + ' ') if text.endswith(' ') else input(formatted_text)
+
+    @staticmethod
     def frame(text, f_s='basic', f_c=None, f_b=None, c=None, b=None, s=None):
         """
 
