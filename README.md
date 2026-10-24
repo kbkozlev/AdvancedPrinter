@@ -19,7 +19,7 @@ python -m advancedprinter
 
 ## Visual examples
 
-[See the illustrated guide](https://github.com/kbkozlev/AdvancedPrinter/blob/docs/visual-examples/docs/visual-guide.md)
+[See the illustrated guide](https://github.com/kbkozlev/AdvancedPrinter/blob/5d2e48a1e097734189db0f655e31a88de8ec68e4/docs/visual-guide.md)
 for runnable examples and output pictures, similar to the original README.
 From a source checkout, run all five demonstrations:
 
@@ -180,7 +180,7 @@ actual stream to `ColorFormatter`; log records are not modified.
 
 ## Documentation and development
 
-- [Visual guide and examples](https://github.com/kbkozlev/AdvancedPrinter/blob/docs/visual-examples/docs/visual-guide.md)
+- [Visual guide and examples](https://github.com/kbkozlev/AdvancedPrinter/blob/5d2e48a1e097734189db0f655e31a88de8ec68e4/docs/visual-guide.md)
 - [API reference and full palette](https://github.com/kbkozlev/AdvancedPrinter/blob/master/docs/api.md)
 - [Migration from 1.x](https://github.com/kbkozlev/AdvancedPrinter/blob/master/docs/migration.md)
 - [Release and PyPI setup](https://github.com/kbkozlev/AdvancedPrinter/blob/master/docs/releasing.md)
