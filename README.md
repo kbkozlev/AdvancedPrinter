@@ -1,117 +1,179 @@
 # AdvancedPrinter
 
-AdvancedPrinter is a custom Python library designed to mimic the behavior of the `print` function with added color and style options using ANSI escape codes. This allows you to print text with various colors and styles to the terminal.
+[![CI](https://github.com/kbkozlev/AdvancedPrinter/actions/workflows/ci.yml/badge.svg)](https://github.com/kbkozlev/AdvancedPrinter/actions/workflows/ci.yml)
+[![PyPI](https://img.shields.io/pypi/v/AdvancedPrinter)](https://pypi.org/project/AdvancedPrinter/)
 
-## Features
+Small terminal printing helpers for Python: colours, styles, inline text, readable
+status messages, and Unicode-aware frames. Built on Python's standard streams
+and one runtime dependency, `wcwidth`.
 
-- Print text in different colors: `black`, `white`,` red`, `green`, `yellow`, `blue`, `magenta`, `cyan`, `orange`, `gray`, `olive` - a list of all colors available by calling the `help`method.
-- Apply styles to text: `bold` = `b`, `italic` = `it`, `underline` = `u`, `inverted` = `inv`, `strike-through` = `str`.
-- Combine styles: `b-it`, `b-u`, `it-u`, `b-it-u` etc.
-- Use `frame` method to frame text with different designs.
-- Use `input` method with colors and styles 
+**Requires Python 3.10+.** Upgrading from 1.x? Read the
+[migration guide](https://github.com/kbkozlev/AdvancedPrinter/blob/master/docs/migration.md).
 
-## Usage
+## Install
 
-1. Install the package from PyPi
-   ```bash
-   pip install AdvancedPrinter
-   ```
-2. Import the `AdvancedPrinter` class into your Python script.
-   
-   ```python
-    from advancedprinter import AdvancedPrinter as ap
-   ```
+```bash
+python -m pip install --upgrade AdvancedPrinter
+python -m advancedprinter
+```
 
-3. Use the `ap.print()` method to print colored text.
+## Print with colours and styles
 
-   ```python
-   # Example usage
-   ap.print("Green text", c="green")
-   ap.print("Underlined text", s="u")
-   ap.print("Bold italic text", s="b-it")
-   ap.print("Orange italic underlined", s="it-u", c='orange')
-   ap.print("White text on blue b!", c="white", b="blue")
-   ap.print("Bold red underlined italic text!", c="red", s="b-it-u")
-   
-   # Additional arguments example
-   ap.print("This is a bold example with additional arguments.", s="b", end="***")
-   ```
-   ![Example1](https://i.imgur.com/sLSRK2N.png)
+```python
+from advancedprinter import print
 
-4. Use `ap.line()` method to print multiple colors in line using nested `f-strings`
+print("Repository updated", color="green", style="bold")
+print("Downloaded", 3, "packages", sep=" | ")
+print("Custom colour", color="#ff8800", background="black")
+print("Combined styles", style="bold italic underline")
+```
 
-   ```python
-   name = "Kaloian"
-   print(f"""{ap.line("Hello, my name is", c='green', s='b')} {ap.line(f"{name}", c='blue')} {ap.line("and I'm", c='white')} {ap.line("28", c='red')} {ap.line('years old!', c='magenta')}""", end='***')
-   ```
-   ![Example2](https://i.imgur.com/E7lAGM6.png)
+The original short arguments and class imports still work:
 
-## Import directly
+```python
+from advancedprinter import AdvancedPrinter as ap
 
-1. Import `print` and `line` directly to override the inbuilt methods
-   
-   ```python
-   from advancedprinter import print, line
-   
-   print("Green text", c="green")
-   
-   name = "Kaloian"
-   print(f"""{line("Hello, my name is", c='green', s='b')} {line(f"{name}", c='blue')} {line("and I'm", c='white')} {line("28", c='red')} {line('years old!', c='magenta')}""", end='***')
-   ```
-   ![Example3](https://i.imgur.com/ONPWHJj.png)
+ap.print("Green text", c="green")
+ap.print("Bold italic text", s="b-it")
+ap.print("White on blue", c="white", b="blue")
+ap.help()
+```
 
-2. Import the `frame` method to frame text with different designs
-   ```python
-   from advancedprinter import frame
-   ```
-- basic
-  ```python
-   frame("This is a frame with basic design")
-  ```
-  ![Basic](https://i.imgur.com/U7s3Gvc.png) 
-- basic2
-   ```python
-   frame("This is a frame with basic2 design", f_s='basic2')
-  ```
-  ![Basic2](https://i.imgur.com/rIUXksJ.png) 
-- single
-   ```python
-   frame("This is a frame with single design", f_s='single')
-  ```
-  ![Single](https://i.imgur.com/bleI3fu.png) 
-- double
-   ```python
-   frame("This is a frame with double design", f_s='double')
-  ```
-  ![Double](https://i.imgur.com/eJapuu6.png) 
-- color (if no parameters are provided for the frame color, it will take the color and background of the text)
-   ```python
-   frame("This is a frame with color", f_s='double', c='white', b='blue')
-  ```
-  ![Color](https://i.imgur.com/pXqiIQ1.png) 
-- multiline / multicolor
-   ```python
-   frame("""This is a frame with different
-            text and frame color and
-            multiple lines""", 
-            f_s='double', f_c='black', f_b='olive', c='white', b='cyan', s='b-u-it')
-  ```
-  ![Multicolor](https://i.imgur.com/eBtGdDc.png)
+`print()` supports the standard `sep`, `end`, `file`, and `flush` parameters.
+Colours may be palette names, `#RRGGBB`, RGB tuples, or xterm indexes from 0 to 255.
+Unknown names and conflicting aliases raise descriptive exceptions.
 
-3. Use the `input` method:
-   ```python
-   from advancedprinter import input
-   
-   something = input('Please enter something: ', c='red', s='b-u')
-   print(something)
-   ```
-   ![Input](https://i.imgur.com/67mfnOI.png)
+## Terminal output and log files
 
-## License
+```python
+from advancedprinter import Printer
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+console = Printer(color_mode="auto")
+console.success("Repository updated")
+console.warning("Using cached release information")
+console.info("Downloaded", 3, "packages")
+console.error("Download failed")  # stderr by default
 
-## Support Me
-<div>
-<a href="https://www.buymeacoffee.com/kbkozlev" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
-</div>
+with open("sync.log", "w", encoding="utf-8") as log:
+    console.print("This file gets plain text", color="green", file=log)
+```
+
+The default `auto` policy inspects the actual destination stream. Redirected
+output, pipes, and `TERM=dumb` get plain text. Non-empty `NO_COLOR` disables
+colours in automatic mode while retaining attributes such as bold.
+
+- `color_mode="always"` explicitly enables styling, even in files or with `NO_COLOR`.
+- `color_mode="never"` removes all ANSI escape sequences, including inline ones.
+- `color_system="auto"` detects standard, 256-colour, or truecolour support from
+  `TERM` and `COLORTERM`. Set the depth explicitly when detection is insufficient.
+
+Printers have independent configuration. No global setup or monkey-patching is
+required. `file=None` resolves the current `sys.stdout` at the time of each call.
+
+## Inline formatting and pure rendering
+
+```python
+from advancedprinter import format_text, line, print
+
+name = line("Kaloian", color="blue", style="bold")
+print(f"Hello, {name}!")
+
+# Outer formatting resumes after the inner span ends.
+print("Before " + line("inside", color="blue") + " after", color="red")
+
+plain = format_text("No escape codes", color="green", color_mode="never")
+```
+
+`line()` is an alias of `format_text()`. These pure functions return strings and
+**default to ANSI output**, independent of the environment. They do not inspect
+stdout; the printing operation applies the destination's policy. Use
+`color_mode="never"` when you need a plain string directly. The pure functions
+require explicit policies; `auto` is only available on output operations.
+
+## Frames
+
+```python
+from advancedprinter import Printer, format_frame
+
+console = Printer()
+console.frame(
+    "Downloaded 3 packages\n中文 and emoji 👋 are measured in terminal cells",
+    title="Repository sync",
+    border="rounded",
+    border_color="cyan",
+    max_width=48,
+    padding=1,
+)
+
+text = format_frame("Ready", border="double", color_mode="never")
+console.print(text)
+```
+
+Borders: `basic`, `basic2`, `single`, `double`, and `rounded`. Frames support
+colours, titles, horizontal padding, alignment, wrapping, and `ascii=True`.
+`width` and `max_width` include borders and padding. Indentation, trailing spaces,
+and blank lines are preserved; use `dedent=True` to remove common indentation.
+A character or title that cannot fit raises `ValueError` rather than breaking
+the frame. `frame()` prints; `format_frame()` returns a string.
+
+## Input, themes, and logging
+
+```python
+from advancedprinter import MessageStyle, Printer
+
+console = Printer(
+    theme={
+        "success": MessageStyle(color="cyan", style="bold", prefix="DONE"),
+    }
+)
+console.success("All tasks complete")
+answer = console.input("  Continue? ", color="yellow")
+```
+
+Input prompts are preserved exactly. `input()` without a prompt is supported;
+EOF and keyboard interrupts behave normally.
+
+```python
+import logging
+import sys
+from advancedprinter import ColorFormatter
+
+handler = logging.StreamHandler(sys.stderr)
+handler.setFormatter(
+    ColorFormatter(
+        "%(levelname)s: %(message)s",
+        stream=handler.stream,
+    )
+)
+logger = logging.getLogger("sync")
+logger.addHandler(handler)
+logger.setLevel(logging.INFO)
+logger.info("Repository updated")
+```
+
+Use an ordinary `logging.Formatter` for file handlers. Pass the console handler's
+actual stream to `ColorFormatter`; log records are not modified.
+
+## Documentation and development
+
+- [API reference and full palette](https://github.com/kbkozlev/AdvancedPrinter/blob/master/docs/api.md)
+- [Migration from 1.x](https://github.com/kbkozlev/AdvancedPrinter/blob/master/docs/migration.md)
+- [Release and PyPI setup](https://github.com/kbkozlev/AdvancedPrinter/blob/master/docs/releasing.md)
+- [Changelog](https://github.com/kbkozlev/AdvancedPrinter/blob/master/CHANGELOG.md)
+- [Contributing](https://github.com/kbkozlev/AdvancedPrinter/blob/master/CONTRIBUTING.md)
+
+CI tests Python 3.10–3.14 on Linux, Windows, and macOS, checks formatting and
+static types, and validates the built wheel and source distribution. Publishing
+a GitHub Release runs the same checks, verifies the tag matches the package
+version, and uploads the validated distributions through PyPI Trusted Publishing.
+The one-time publisher setup is described in the release guide.
+
+Terminal rendering still depends on fonts and terminal support. Italic and
+strike-through are not available everywhere; emoji widths can vary between
+terminals. Windows automatic mode uses VT support where available and falls back
+to plain output otherwise. Border characters fall back to ASCII when the stream
+encoding requires it; non-encodable user content still raises the normal error.
+
+## License and support
+
+[MIT](LICENSE) · [Buy me a coffee](https://www.buymeacoffee.com/kbkozlev)
