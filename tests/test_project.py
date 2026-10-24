@@ -54,3 +54,15 @@ def test_release_tag_rejects_mismatches(tag):
     check = runpy.run_path(str(ROOT / "scripts" / "check_release.py"))["check_tag"]
     with pytest.raises(ValueError, match="does not match"):
         check(tag, "2.0.0")
+
+
+def test_visual_guide_python_examples_execute(tmp_path, monkeypatch, capsys):
+    monkeypatch.chdir(tmp_path)
+    namespace = {}
+    for snippet in re.findall(
+        r"```python\n(.*?)```", (ROOT / "docs" / "visual-guide.md").read_text(), re.S
+    ):
+        exec(compile(snippet, "docs/visual-guide.md", "exec"), namespace)
+    assert (tmp_path / "sync.log").read_text() == "Repository updated\n"
+    assert namespace["saved"].startswith("+")
+    capsys.readouterr()

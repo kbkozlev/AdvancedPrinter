@@ -17,6 +17,20 @@ python -m pip install --upgrade AdvancedPrinter
 python -m advancedprinter
 ```
 
+## Visual examples
+
+[See the illustrated guide](https://github.com/kbkozlev/AdvancedPrinter/blob/docs/visual-examples/docs/visual-guide.md)
+for runnable examples and output pictures, similar to the original README.
+From a source checkout, run all five demonstrations:
+
+```bash
+python examples/visual_examples.py all
+```
+
+The pictures below are rendered from the examples' actual ANSI output on a dark
+terminal theme. They force colour for capture; normal application output uses
+`auto` by default. Fonts and terminal palettes may differ on your system.
+
 ## Print with colours and styles
 
 ```python
@@ -42,6 +56,8 @@ ap.help()
 `print()` supports the standard `sep`, `end`, `file`, and `flush` parameters.
 Colours may be palette names, `#RRGGBB`, RGB tuples, or xterm indexes from 0 to 255.
 Unknown names and conflicting aliases raise descriptive exceptions.
+
+![Colours, styles, and custom colours](https://raw.githubusercontent.com/kbkozlev/AdvancedPrinter/083938fb4d15bb18e821719db1a0dc4c675d3a82/docs/images/colours-and-styles.png)
 
 ## Terminal output and log files
 
@@ -70,6 +86,8 @@ colours in automatic mode while retaining attributes such as bold.
 Printers have independent configuration. No global setup or monkey-patching is
 required. `file=None` resolves the current `sys.stdout` at the time of each call.
 
+![Colour in a terminal and plain text in a log file](https://raw.githubusercontent.com/kbkozlev/AdvancedPrinter/083938fb4d15bb18e821719db1a0dc4c675d3a82/docs/images/terminal-and-log-file.png)
+
 ## Inline formatting and pure rendering
 
 ```python
@@ -89,6 +107,8 @@ plain = format_text("No escape codes", color="green", color_mode="never")
 stdout; the printing operation applies the destination's policy. Use
 `color_mode="never"` when you need a plain string directly. The pure functions
 require explicit policies; `auto` is only available on output operations.
+
+![Inline formatting and restoration of outer styles](https://raw.githubusercontent.com/kbkozlev/AdvancedPrinter/083938fb4d15bb18e821719db1a0dc4c675d3a82/docs/images/inline-and-nested-styles.png)
 
 ## Frames
 
@@ -115,6 +135,8 @@ colours, titles, horizontal padding, alignment, wrapping, and `ascii=True`.
 and blank lines are preserved; use `dedent=True` to remove common indentation.
 A character or title that cannot fit raises `ValueError` rather than breaking
 the frame. `frame()` prints; `format_frame()` returns a string.
+
+![Frames with titles, alignment, and wrapping](https://raw.githubusercontent.com/kbkozlev/AdvancedPrinter/083938fb4d15bb18e821719db1a0dc4c675d3a82/docs/images/frames-and-wrapping.png)
 
 ## Input, themes, and logging
 
@@ -154,8 +176,11 @@ logger.info("Repository updated")
 Use an ordinary `logging.Formatter` for file handlers. Pass the console handler's
 actual stream to `ColorFormatter`; log records are not modified.
 
+![Status messages, custom themes, and standard logging](https://raw.githubusercontent.com/kbkozlev/AdvancedPrinter/083938fb4d15bb18e821719db1a0dc4c675d3a82/docs/images/messages-and-logging.png)
+
 ## Documentation and development
 
+- [Visual guide and examples](https://github.com/kbkozlev/AdvancedPrinter/blob/docs/visual-examples/docs/visual-guide.md)
 - [API reference and full palette](https://github.com/kbkozlev/AdvancedPrinter/blob/master/docs/api.md)
 - [Migration from 1.x](https://github.com/kbkozlev/AdvancedPrinter/blob/master/docs/migration.md)
 - [Release and PyPI setup](https://github.com/kbkozlev/AdvancedPrinter/blob/master/docs/releasing.md)
@@ -176,4 +201,4 @@ encoding requires it; non-encodable user content still raises the normal error.
 
 ## License and support
 
-[MIT](LICENSE) · [Buy me a coffee](https://www.buymeacoffee.com/kbkozlev)
+[MIT](https://github.com/kbkozlev/AdvancedPrinter/blob/master/LICENSE) · [Buy me a coffee](https://www.buymeacoffee.com/kbkozlev)
