@@ -1,0 +1,77 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+  workflow_call:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: Python ${{ matrix.python }} / ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        python: ['3.10', '3.11', '3.12', '3.13', '3.14']
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Install package and tests
+        run: python -m pip install . pytest pytest-cov
+      - name: Test the minimum runtime dependency on Python 3.10
+        if: matrix.python == '3.10'
+        run: python -m pip install 'wcwidth==0.9.0'
+      - name: Run tests against installed package
+        run: python -m pytest --cov=advancedprinter --cov-fail-under=90
+      - name: Run demonstration
+        run: python -m advancedprinter
+
+  quality:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: '3.12'
+      - run: python -m pip install '.[dev]'
+      - run: python -m ruff check .
+      - run: python -m ruff format --check .
+      - run: python -m mypy src/advancedprinter
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: '3.12'
+      - run: python -m pip install build twine
+      - name: Build source distribution and wheel
+        run: python -m build
+      - name: Check distribution metadata and README
+        run: python -m twine check --strict dist/*
+      - name: Install wheel and verify public API
+        shell: bash
+        run: |
+          python -m pip install dist/*.whl
+          python -c "from advancedprinter import Printer, format_frame; assert format_frame('ok', color_mode='never'); Printer().success('Installed wheel works')"
+      - name: Check source distribution can build a wheel
+        shell: bash
+        run: python -m pip wheel --no-deps dist/*.tar.gz --wheel-dir /tmp/sdist-wheel
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: distributions
+          path: dist/
+          if-no-files-found: error
