@@ -11,7 +11,7 @@ requires-python = ">=3.10"
 license = "MIT"
 license-files = ["LICENSE"]
 authors = [{name = "Kaloian Kozlev", email = "kbkozlev@gmail.com"}]
-dependencies = ["wcwidth>=0.9,<1"]
+dependencies = ["wcwidth>=0.9.3,<1"]
 classifiers = [
   "Development Status :: 5 - Production/Stable",
   "Intended Audience :: Developers",
