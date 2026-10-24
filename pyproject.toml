@@ -34,6 +34,8 @@ Changelog = "https://github.com/kbkozlev/AdvancedPrinter/blob/master/CHANGELOG.m
 [project.optional-dependencies]
 dev = ["pytest>=9.1.1", "pytest-cov>=7.1.0", "ruff>=0.17.1", "mypy>=2.4.0", "build>=1.6.1", "twine>=7.0.0"]
 
+screenshots = ["Pillow>=10", "pyte>=0.8.2"]
+
 [tool.setuptools.packages.find]
 where = ["src"]
 

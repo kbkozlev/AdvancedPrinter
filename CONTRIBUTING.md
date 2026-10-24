@@ -45,3 +45,17 @@ or clear old build outputs before a release so stale versions are not included.
 When changing output, test both terminal and redirected streams. For frames,
 include Unicode display widths, ANSI spans, empty input, and whitespace. Keep
 new runtime dependencies deliberate. See `docs/releasing.md` for publishing.
+
+## Visual examples and documentation images
+
+Run `python examples/visual_examples.py all` to explore the public API. To
+regenerate the terminal previews from actual example output in a source checkout:
+
+```bash
+python -m pip install -e '.[screenshots]'
+python scripts/render_examples.py
+```
+
+The screenshot dependencies are optional and do not change runtime requirements.
+The renderer uses `pyte`, Pillow, and DejaVu Sans Mono. See
+`docs/visual-guide.md` for font configuration and image-link update instructions.
